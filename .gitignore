@@ -17,3 +17,11 @@ out/
 # Maven / Gradle build outputs (if you ever use them)
 target/
 build/
+
+# Windows system files
+desktop.ini
+Thumbs.db
+
+# Build folders
+build/
+target/
