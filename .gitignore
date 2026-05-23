@@ -1,0 +1,19 @@
+# Compiled class files
+*.class
+
+# If you're using IntelliJ
+.idea/
+*.iml
+out/
+
+# If you're using Eclipse
+.classpath
+.project
+.settings/
+
+# If you're using VS Code
+.vscode/
+
+# Maven / Gradle build outputs (if you ever use them)
+target/
+build/
