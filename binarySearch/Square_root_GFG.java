@@ -7,6 +7,7 @@ public class Square_root_GFG {
         int n=input.nextInt();
         int answer=squareRoot(n);
         System.out.println("Answer is : "+answer);
+        input.close();
         
     }
     public static int squareRoot(int x){
