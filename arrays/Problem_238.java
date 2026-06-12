@@ -8,21 +8,33 @@ public class Problem_238 {
         
 
     public static int[] productExceptself(int[] nums){
-        int[] answer=new int[nums.length];
-        for(int k=0;k<nums.length;k++){
-            int mult=1;
-            int excluded=k;
-            for(int i=0;i<nums.length;i++){
+    int n = nums.length;
+    int[] answer = new int[n];
+
+    answer[0] = 1;
+    for (int i = 1; i < n; i++) {
+        answer[i] = answer[i - 1] * nums[i - 1]; //
+    }
+    int rightProduct = 1;
+    for (int i = n - 1; i >= 0; i--) {
+        answer[i] = answer[i] * rightProduct;
+        rightProduct *= nums[i];
+    }
+
+    return answer;
+        // int[] answer=new int[nums.length];
+        // for(int k=0;k<nums.length;k++){
+        //     int mult=1;
+        //     int excluded=k;
+        //     for(int i=0;i<nums.length;i++){
             
-                if(i!=excluded){
-                    mult*=nums[i];
-                }
-                }
-                answer[k]=mult;
+        //         if(i!=excluded){
+        //             mult*=nums[i];
+        //         }
+        //         }
+        //         answer[k]=mult;
            
             
-        }
-
-        return answer;
+       
     }
 }
