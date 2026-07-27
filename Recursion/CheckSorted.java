@@ -4,6 +4,7 @@ public class CheckSorted {
         System.out.println(isSorted(arr));
     }
     public static boolean isSorted(int[] arr) {
+        if(arr.length==0 || arr.length==1) return true;
         int idx=0;
         return helper(arr,idx);
     }
