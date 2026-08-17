@@ -1,43 +1,14 @@
 public class Draft{
-    private Node head;
-    private Node tail;
-    private int size;
+    public static void main(String[] args) {
+        LL list = new LL();
+        list.insertAtFirst(2);
+        list.insertAtFirst(45);
+        list.insertAtFirst(46);
+        list.insertAtFirst(50);
 
 
-    public Draft(){
-        this.size=0;
-    }
-
-    public void insertFirst(int val){
-        Node node=new Node(val);
-        node.next=head;
-        head=node;
-
-        if(tail==null){
-            tail=head;
-        }
-        size+=1;
-    }
-    public void display(){
-        Node temp=head;
-        while(temp!=null){
-            System.out.println(temp.value + "->");
-            temp=temp.next;
-        }
-        IO.print("End");
-    }
-
-    private class Node{
-        private int value;
-        private Node next;
-
-        public Node(int value){
-            this.value=value;
-
-        }
-        public Node(int value,Node next){
-            this.value=value;
-            this.next=next;
-        }
+        list.display();
+        System.out.print("End");
+        System.out.println();
     }
 }
