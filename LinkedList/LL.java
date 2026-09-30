@@ -8,6 +8,37 @@ public class LL {
     public LL(){
         this.size=0;
     }
+//Leetcode problem 83 solution. 
+ public void removeDuplicates(){
+        Node node = head;
+        while(node.next != null){
+            if(node.value == node.next.value){
+                node.next = node.next.next;
+                size--;
+            }
+            else{
+                node = node.next;
+            }
+        }
+        tail = node;
+        tail.next = null;
+    }
+
+        
+
+//insertion using recursion
+public void insertRec(int val, int index){
+        head = insertRec(val, index, head);
+    }
+    private Node insertRec(int val, int index, Node node){
+        if(index == 0){
+            Node temp = new Node(val,node);
+            size++;
+            return temp;
+        }
+        node.next = insertRec(val, index-1, node.next);
+        return node;
+    }
 
 //Creating the class Node.
     private class Node{
@@ -130,6 +161,7 @@ public class LL {
             System.out.print(temp.value + " -> ");
             temp=temp.next;
         }
+        System.out.println("End");
 
     }
     
