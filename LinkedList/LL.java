@@ -2,170 +2,150 @@
 public class LL {
     private Node head;
     private Node tail;
+
     private int size;
-
-
     public LL(){
         this.size=0;
     }
-//Leetcode problem 83 solution. 
- public void removeDuplicates(){
-        Node node = head;
-        while(node.next != null){
-            if(node.value == node.next.value){
-                node.next = node.next.next;
-                size--;
-            }
-            else{
-                node = node.next;
-            }
-        }
-        tail = node;
-        tail.next = null;
-    }
-
-        
-
-//insertion using recursion
-public void insertRec(int val, int index){
-        head = insertRec(val, index, head);
-    }
-    private Node insertRec(int val, int index, Node node){
-        if(index == 0){
-            Node temp = new Node(val,node);
-            size++;
-            return temp;
-        }
-        node.next = insertRec(val, index-1, node.next);
-        return node;
-    }
-
-//Creating the class Node.
     private class Node{
-        private int value; //stores actual value of LL. it is an example here. 
+        private int value;
         private Node next;
+        //################################
 
         public Node(int value){
             this.value=value;
-            }
 
+        }
         public Node(int value, Node next){
-            this.next=next;
             this.value=value;
-            }
+            this.next=next;
         }
-
-//inserting element at first position or starting of LL
-    public void insertFirst(int value){
-        Node node = new Node(value);
-        node.next= head ;
-        head=node;
-        if(tail==null){
-            tail=head;
-        }
-        size++; //node's size must increase with every addition
     }
-
-    public Node find(int val){
-        Node node= head;
-        while(node != null){
-            if(node.value==val){
-                return node;
-            }
-            node=node.next;
-        }
-        return null;
-    }
-
-    public int delete(int index){
-        if(index==0){
-            deleteFirst();
-
-        }
-        else if(index == size-1){
-            deleteLast();
-        }
-        Node prev = get(index-1);
-        int val = prev.next.value;
-        prev.next = prev.next.next;
-        return val;
-    }
-
-
-    public int deleteLast(){
-        if(size<=1){
-            return deleteFirst();
-
-        }
-        Node secondLast = get(size - 2);
-        int val = tail.value;
-        tail = secondLast;
-        tail.next = null;
-        return val;
-    }
-
-
-    public Node get(int index){
-        Node node = head;
-        for(int i = 0; i < index; i++){
-            node=node.next;
-
-        }
-        return node;
-    }
-
-    public int deleteFirst(){
-        int val=head.value;
-        head=head.next;
-        if(head==null){
-            tail =null;
-        }
-        size--;
-        return val;
-    }
+        public void insertLast(int val){
+            Node node = new Node(val);
             
-    public void insertLast(int value){
-        if(tail==null){
-            insertFirst(value);   
+            if(head==null){
+                head=node;
+                tail=node;
+
+            }
+            tail.next=node;
+            tail=node;
+            size++;
+                
+            
+        }
+            
+               
+    public void insertFirst(int val){
+            Node node = new Node(val);
+            node.next=head;
+            head = node;
+            if(tail==null){
+                tail=head;
+            }
+            size++;
+        }
+
+    public void insert(int val, int index){
+        int i =0;
+        Node temp=head;
+        if (index < 0 || index > size) {
+        // Handle invalid index
+            System.out.println("Ghop Ghop");
             return;
         }
-        Node node = new Node(value);
-        tail.next = node;
-        tail=node;
-        size++;
-    }
-
-    public void insert(int val,int index){
         if(index==0){
             insertFirst(val);   
             return;
         }
         if(index==size){
-            insertLast(val);    
+            insertLast(val);
             return;
         }
-        Node temp=head;
-        for(int i=0;i<index; i++){
-            temp=temp.next;
 
+        while (i<index-1) {
+            temp=temp.next; i++;
         }
-        Node node = new Node(val,temp.next);
+        Node node=new Node(val);
+        node.next=temp.next;
         temp.next=node;
         size++;
     }
-//Display whole LL, by moving the temp node. 
-//Do not move the head node otherwise it will change the structure of LL
-    public void display(){
-        Node temp = head;
-        while(temp!=null){
-            System.out.print(temp.value + " -> ");
-            temp=temp.next;
-        }
-        System.out.println("End");
 
+
+    public int deleteFirst(){
+        int val=head.value;
+        head = head.next;
+        if(head==null){
+            tail = null;
+        }
+        size--;
+        return val;
+    }
+
+    public Node get(int index){
+        Node node = head;
+        for(int i=0;i<index;i++){
+            node=node.next;
+        }
+        return node;
+    }
+    public int deleteLast(){
+        if(size<=1) return deleteFirst();
+        Node secondLast = get(size-2);
+        int val = tail.value;
+        tail=secondLast;
+        return val;
+    }
+    //to delete perticular index
+    public int delete(int index){
+        if(index==0) deleteFirst();
+        if(index==size-1) deleteLast();
+        Node previous = get(index-1);
+        int val = previous.next.value;
+        previous.next=previous.next.next;
+        return val;
+    }
+    //find perticular value
+    public Node find(int val){
+        Node node=head;
+        while(node!=null){
+            if(node.value==val) return node;
+            node = node.next;
+              }
+        return null;    
+    }
+            
+
+//we never move the actual head because it will change the structure of LL
+       
+        public void display(){
+            Node temp=head;
+            while (temp!=null) {
+            
+                System.out.print(temp.value+" -> ");
+               
+                temp=temp.next;
+            }
+             System.out.println("End");
+        }
     }
     
- }
+
+
+
+                    
+
+        
+                
+
+
+
+
+
+   
+    
 
 
 

@@ -2,59 +2,93 @@ public class DLL {
     private Node head;
     private Node tail;
     private int size;
-    public DLL() {
-        this.size = 0;
-    }
+  
+    private class Node{
+        private int value;
+        private Node next;
+        private Node prevNode;
 
-    
-
-    public void insertFirst(int val) {
-        Node node = new Node(val);
-        node.next = head;
-        node.prev = null;
-
-        if (head != null) {
-            head.prev = node;
+        public Node(int value){
+        this.value=value;
+        
         }
-        head = node;
-
-        if (tail == null) {
-            tail = node; // FIX: set tail to the new node if list was empty
+        public Node(int value, Node next, Node prevNode){
+            this.value=value;
+            this.next=next;
+            this.prevNode=prevNode;
         }
-        size++;
     }
+        public void insertFirst(int val){
+            Node node = new Node(val);
+            node.next=head;
+            node.prevNode=null;
+            if(head!=null) head.prevNode=node;  
+            else tail=node;
 
-        public void display(){
-            Node temp = head;
-            while(temp != null){
-                System.out.print(temp.val + " -> ");
-             
+            head=node;
+            size++;
+        }
+
+        public void insertLast(int val){
+            Node node= new Node(val);
+            if(head==null) head= node;
+            Node temp=head;
+            while(temp.next!=null){
                 temp = temp.next;
             }
-        }
-         public void displayRev(){
-            Node temp = tail;
-            while(temp != null){
-                System.out.print(temp.val + " -> ");
-                temp = temp.prev;
-            }
+            node.prevNode=temp;
+            temp.next=node;
+
+            temp=node;
+            tail = temp;
+
+            size++;
         }
 
-    private class Node{
-        int val;
-        Node prev;
-        Node next;
-    
-        public Node(int val){
-            this.val=val;
+        public Node find(int value){
+            Node p=head;
+            while(p!=null){
+                if(p.value!=value){
+                    return p;
+                }
+                p=p.next;
+            }
+
+            return null;
+
         }
-        public Node(int val, Node next , Node prev){
-            this.val=val;
-            this.next = next;
-            this.prev = prev;
+        public void displayRev(){
+            Node node = tail;
+            while(node!=null){
+                System.out.print(node.value+" -> ");
+                node=node.prevNode;
+            }
+            System.out.println("Start");
+                
         }
+        public void display(){
+            Node node=head;
+            while(node!=null){
+                System.out.print(node.value+" -> ");
+                node=node.next;
+            }
+            System.out.println("End");
+        }
+
+       
+
     }
-}
+
+       
+
+    
+    
+
+        
+
+            
+
+
 
        
             
