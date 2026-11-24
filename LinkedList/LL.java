@@ -11,7 +11,6 @@ public class LL {
         private int value;
         private Node next;
         //################################
-
         public Node(int value){
             this.value=value;
 
@@ -21,57 +20,58 @@ public class LL {
             this.next=next;
         }
     }
+        //##################################
         public void insertLast(int val){
             Node node = new Node(val);
             
             if(head==null){
                 head=node;
                 tail=node;
-
             }
+
             tail.next=node;
             tail=node;
             size++;
-                
-            
         }
+        
+        public void insertFirst(int val){
+                Node node = new Node(val);
+                node.next=head;
+                head = node;
+                if(tail==null){
+                    tail=head;
+                }
+                size++;
+            }
+            
+            public void insert(int val, int index){
+                int i =0;
+                Node temp=head;
+                if (index < 0 || index > size) {
+                // Handle invalid index
+                    System.out.println("Ghop Ghop");
+                    return;
+                }
+                if(index==0){
+                    insertFirst(val);   
+                    return;
+                }
+                if(index==size){
+                    insertLast(val);
+                    return;
+                }
+        
+                while (i<index-1) {
+                    temp=temp.next; i++;
+                }
+                Node node=new Node(val);
+                node.next=temp.next;
+                temp.next=node;
+                size++;
+            }
             
                
-    public void insertFirst(int val){
-            Node node = new Node(val);
-            node.next=head;
-            head = node;
-            if(tail==null){
-                tail=head;
-            }
-            size++;
-        }
 
-    public void insert(int val, int index){
-        int i =0;
-        Node temp=head;
-        if (index < 0 || index > size) {
-        // Handle invalid index
-            System.out.println("Ghop Ghop");
-            return;
-        }
-        if(index==0){
-            insertFirst(val);   
-            return;
-        }
-        if(index==size){
-            insertLast(val);
-            return;
-        }
-
-        while (i<index-1) {
-            temp=temp.next; i++;
-        }
-        Node node=new Node(val);
-        node.next=temp.next;
-        temp.next=node;
-        size++;
-    }
 
 
     public int deleteFirst(){
@@ -119,18 +119,18 @@ public class LL {
             
 
 //we never move the actual head because it will change the structure of LL
-       
         public void display(){
             Node temp=head;
             while (temp!=null) {
             
                 System.out.print(temp.value+" -> ");
-               
+            
                 temp=temp.next;
             }
-             System.out.println("End");
+            System.out.println("End");
         }
     }
+       
     
 
 
